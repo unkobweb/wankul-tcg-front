@@ -1,5 +1,9 @@
+import Offer from "../components/Offer"
+
 const HomePage = () => {
-  return "Hello"
+  return (
+    <Offer id={2} />
+  )
 }
 
 export default HomePage
