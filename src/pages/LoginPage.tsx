@@ -9,6 +9,7 @@ import { Separator } from "../components/ui/separator"
 import { Mail } from "lucide-react"
 import DiscordLogo from "../components/svg/discord"
 import XLogo from "../components/svg/x"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip"
 
 const formSchema = z.object({
   email: z.string().email({ message: "L'email n'est pas valide" }),
@@ -36,10 +37,22 @@ const LoginPage = () => {
             <DiscordLogo className="h-[100%] mr-3" fill="#9999A0"/>
             Se connecter avec Discord
           </Button>
-          <Button variant="secondary" className="flex flex-row justify-start w-[100%]">
-            <XLogo className="h-[100%] mr-3" fill="#9999A0"/>
-            Se connecter avec X
-          </Button>
+          <TooltipProvider>
+            <Tooltip delayDuration={200}>
+              <TooltipTrigger asChild>
+                <span>
+                  <Button disabled variant="secondary" className="flex flex-row justify-start w-[100%]">
+                    <XLogo className="h-[100%] mr-3" fill="#9999A0"/>
+                    Se connecter avec X
+                  </Button>
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="right">
+                <p>A venir</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <Separator className="my-3" />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-8">
